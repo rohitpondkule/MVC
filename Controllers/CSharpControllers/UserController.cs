@@ -14,6 +14,13 @@ namespace itvidpradotnetcoreadvanced.Controllers.CSharpControllers
             _db = db; 
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
+      
+        
         public ActionResult MainPage()
         {
             return View();

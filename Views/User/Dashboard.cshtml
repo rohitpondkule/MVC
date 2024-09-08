@@ -1,0 +1,22 @@
+﻿
+
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h3 class="text-center">@ViewData["Title"]</h3>
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-4 text-center">
+            <a class="btn btn-primary btn-lg" asp-controller="Admin" asp-action="Index">Admin</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a class="btn btn-success btn-lg" asp-controller="Restaurant" asp-action="Index">Restaurant</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a class="btn btn-info btn-lg" asp-controller="User" asp-action="MainPage">Customer</a>
+        </div>
+    </div>
+</div>
