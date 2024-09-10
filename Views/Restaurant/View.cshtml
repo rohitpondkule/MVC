@@ -1,0 +1,358 @@
+﻿@* @model SearchViewModel
+
+<style>
+    .search-bar {
+        width: 100%;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .search-bar form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            width: 30%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar input[type="date"] {
+            width: 20%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button[type="submit"] {
+            width: 10%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .search-bar button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+
+        .search-bar i {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .search-bar input[type="text"], .search-bar input[type="date"] {
+            transition: all 0.3s ease-in-out;
+        }
+
+            .search-bar input[type="text"]:focus, .search-bar input[type="date"]:focus {
+                width: 40%;
+                padding: 15px;
+                border-color: #4CAF50;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .search-bar button[type="submit"] {
+            transition: all 0.3s ease-in-out;
+        }
+
+            .search-bar button[type="submit"]:hover {
+                transform: scale(1.1);
+            }
+</style>
+
+<div class="search-bar">
+    <form asp-action="Search" asp-controller="Home" method="get">
+        <input type="text" name="searchQuery" placeholder="Search...">
+        <input type="text" name="location" placeholder="Location...">
+        <input type="date" name="date" placeholder="Date...">
+        <button type="submit" value="search">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+
+
+
+
+ *@
+
+@* <style>
+ .search-bar {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar form {
+    display: flex;
+    flex-wrap: wrap; /* Allows fields to wrap if they don't fit in one line */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar input[type="text"],
+.search-bar input[type="date"],
+.search-bar input[type="number"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.search-bar input[type="text"]:focus,
+.search-bar input[type="date"]:focus,
+.search-bar input[type="number"]:focus {
+    width: 30%;
+    padding: 15px;
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input[type="date"] {
+    width: 20%;
+}
+
+.search-bar input[type="number"] {
+    width: 15%;
+}
+
+.search-bar button[type="submit"] {
+    width: 10%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.search-bar button[type="submit"]:hover {
+    background-color: #3e8e41;
+    transform: scale(1.1);
+}
+
+.search-bar i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+</style> *@
+
+@await Html.PartialAsync("~/Views/Shared/_PartialView.cshtml")
+
+
+<div class="text-center">
+   
+
+  <div class="image-gallery">
+    <div class="image-container">
+        <img src="~/images/splashmount.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+        <h3>Hotel SplashMount</h3>
+        <h8>Sujay 413101, Phule Nagar-Akluj Rd, Maharashtra</h8>
+    </div>
+    
+    
+    <div class="image-container">
+        <img src="~/images/sujitgraden.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Hotel Sujit Garden</h3>
+            <h8>Hotel Sujit Garden,Shivaji Nagar,Akluj, Maharashtra</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/sizzling.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Hotel Sizzling</h3>
+            <h8>sai marg-4,ManSangram Nagar, Akluj, Maharashtra</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/ruchi.jpg" />
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Hotel Ruchi Veg</h3>
+            <h8>Near roopa mangal karyalaya, Akluj, Maharashtra</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/sahyadri.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Hotel Sahyadri</h3>
+            <h8>indapur bypass, road, akluj, Akluj, Maharashtra</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/Galandeveg.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Galande Pure Veg</h3>
+            <h8>Velapur - Akluj Rd, Vidya Nagar, Malewadi, Maharashtra</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/GirmePureveg.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Girme Pure Veg</h3>
+            <h8>Malewadi, Akluj, Maharashtra 413101</h8>
+        
+    </div>
+
+
+    <div class="image-container">
+        <img src="~/images/PatilWada.jpg"/>
+            <div class="stars">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star ">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <h3>Hotel Patil Wada</h3>
+            <h8>Sumitra Nagar, Akluj, Maharashtra 413101</h8>
+        
+    </div>
+   
+   </div>
+
+</div>
+
+
+<style>
+    .image-gallery {
+        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: safe center;
+    }
+
+    .image-container {
+        margin: 10px;
+        width: 250px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .image-container p {
+        font-size: 16px;
+        color: #666;
+        margin-top: 10px;
+    }
+    
+    .image-container:hover{
+        
+        background-color:antiquewhite;
+    }
+
+
+
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: ghostwhite;
+        padding: 20px;
+    }
+
+    .hotel {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .hotel h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+    .stars {
+        margin-top: 10px;
+    }
+
+    .star {
+        font-size: 2em;
+        color: #ddd; 
+    }
+
+    .filled {
+        color: black; 
+    }
+
+    .text-center{
+        margin-top : 60px;
+    }
+
+</style>
+

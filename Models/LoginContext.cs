@@ -63,6 +63,9 @@ public partial class LoginContext : DbContext
             entity.Property(e => e.MiddleName)
                 .HasMaxLength(20)
                 .IsUnicode(false);
+            entity.Property(e => e.MobileNo)
+                .HasMaxLength(20)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<UserLogin>(entity =>
@@ -71,9 +74,15 @@ public partial class LoginContext : DbContext
 
             entity.ToTable("UserLogin");
 
-            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-            entity.Property(e => e.LastLoginDate).HasColumnType("datetime");
-            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.LastLoginDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.ModifiedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.Password)
                 .HasMaxLength(20)
                 .IsUnicode(false);

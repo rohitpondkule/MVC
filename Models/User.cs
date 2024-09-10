@@ -17,7 +17,7 @@ public partial class User
 
     public string Dob { get; set; }
 
-    public int? MobileNo { get; set; }
+    public string MobileNo { get; set; }
 
     public string Email { get; set; }
 

@@ -1,7 +1,10 @@
 ﻿using itvidpradotnetcoreadvanced.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Security.Claims;
 using static UglyToad.PdfPig.Core.PdfSubpath;
 
 namespace itvidpradotnetcoreadvanced.Controllers.CSharpControllers
@@ -79,44 +82,39 @@ namespace itvidpradotnetcoreadvanced.Controllers.CSharpControllers
             return View();
         }
 
+
         [HttpPost]
-        public ActionResult Login(UserLogin loginUser)
+        public async Task<IActionResult> Login(string username, string password)
         {
+            LoginContext db = new LoginContext();
 
-            var users = _db.UserLogins
-            .Where(u => u.UserName == loginUser.UserName && u.Password == loginUser.Password);
+            var users = _db.UserLogins.Any(u => u.UserName == username && u.Password == password);
 
-            if (users.Any())
+           
+            if (users)
             {
-                var user = users.First();
-
-
-                return RedirectToAction("MainPage");
-            }
-            else
+                var claims = new List<Claim>
             {
-                ModelState.AddModelError("", "Invalid username or password.");
-                return View();
-            }
-            //var user = this._db.UserLogins.SingleOrDefault(u => u.UserName == loginUser.UserName && u.Password == loginUser.Password);
+                new Claim(ClaimTypes.Name, username)
+            };
 
-            //if (user != null)
-            //{
-            //    ModelState.AddModelError("", "valid username or password.");
-            //    return View();
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError("", "Invalid username or password.");
-            //    return View();
-            //}
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true 
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return RedirectToAction("Dashboard");
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View();
         }
 
-        
-
-
-
+       
     }
 
 }

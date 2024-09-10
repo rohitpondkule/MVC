@@ -2,7 +2,6 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace itvidpradotnetcoreadvanced.Models;
 
@@ -12,12 +11,11 @@ public partial class UserLogin
 
     public string UserName { get; set; }
 
-    [DataType(DataType.Password)]
     public string Password { get; set; }
 
-    public DateTime? CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public DateTime? ModifiedDate { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public DateTime? LastLoginDate { get; set; }
+    public DateTime LastLoginDate { get; set; }
 }

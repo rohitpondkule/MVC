@@ -10,7 +10,6 @@
     <Folder Include="DataAccessLayer\" />
     <Folder Include="Views\CSharpViews\" />
     <Folder Include="Views\Shared\CSharpPartialViews\" />
-    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
   <ItemGroup>
